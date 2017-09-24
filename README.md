@@ -9,6 +9,9 @@ npm install @brycemarshall/timespan
 ## The module exports the following types:
 
 ```ts
+/**
+ * Represents a time interval.
+ */
 export declare class Timespan {
     private ms;
     /**
@@ -261,9 +264,8 @@ export declare class Timespan {
     clone(): Timespan;
     private static evalMillis(value);
     private static validateRange(value, min, max, paramName?);
-    static validateInt(value: number, paramName?: string): void;
+    private static validateInt(value, paramName?);
 }
-
 ```
 
 ## Contributors
