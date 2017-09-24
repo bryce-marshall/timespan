@@ -1,6 +1,9 @@
 import { ArgumentNullException, ArgumentOutOfRangeException, ArgumentException } from "@brycemarshall/exception";
 import { SimpleException } from "@brycemarshall/simple-exception";
 
+/**
+ * Represents a time interval.
+ */
 export class Timespan {
     /**
      * Creates a new Timespan instance.
@@ -535,7 +538,7 @@ export class Timespan {
         if (value < min || value > max) throw new ArgumentOutOfRangeException(paramName ? paramName : "value", min, max);
     }
 
-    static validateInt(value: number, paramName?: string) {
+    private static validateInt(value: number, paramName?: string) {
         if (typeof (value) != "number" || value != Math.floor(value)) throw new ArgumentException(paramName ? paramName : "value", "Must be an integer.");
     }
 }
