@@ -20,7 +20,10 @@
     "day",
     "hour",
     "second",
-    "millisecond"
+    "millisecond",
+    "add",
+    "subtract",
+    "compare"
   ],
   "author": "Bryce Marshall",
   "license": "MIT",
