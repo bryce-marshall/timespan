@@ -1,4 +1,4 @@
-# @brycemarshall/exception
+# @brycemarshall/timespan
 
 Represents a time interval which is able to be manipulated and compared arithmetically, and applied to Date object instances.
 
