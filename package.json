@@ -1,0 +1,28 @@
+{
+  "name": "@brycemarshall/timespan",
+  "version": "1.0.0",
+  "description": "Represents a time interval which is able to be manipulated and compared arithmetically, and applied to Date object instances.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bryce-marshall/timespan"
+  },
+  "main": "index",
+  "types": "index",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "timespan",
+    "time",
+    "interval",
+    "date",
+    "week",
+    "day",
+    "hour",
+    "second",
+    "millisecond"
+  ],
+  "author": "Bryce Marshall",
+  "license": "MIT",
+  "dependencies": {}
+}

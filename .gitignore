@@ -1,0 +1,4 @@
+node_modules
+timespan.nodejs/build
+*.js
+*.d.ts
