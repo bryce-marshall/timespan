@@ -18,7 +18,7 @@ export class Timespan {
      * 
      * @param days Creates a new Timespan instance reflecting the specified component values.
      * @param hours The hours value.
-     * @param minutes The minute value.
+     * @param minutes The minutes value.
      * @param seconds The seconds value.
      * @param milliseconds The milliseconds value.
      */
