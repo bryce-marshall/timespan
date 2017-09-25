@@ -1,6 +1,6 @@
 {
   "name": "@brycemarshall/timespan",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Represents a time interval which is able to be manipulated and compared arithmetically, and applied to Date object instances.",
   "repository": {
     "type": "git",

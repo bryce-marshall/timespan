@@ -234,7 +234,7 @@ export declare class Timespan {
     /**
      * Returns the sign this Timespan, indicating whether the value is positive, negative or zero.
      */
-    sign(): any;
+    sign(): 0 | 1 | -1;
     /**
      * Compares two TimeSpan objects and returns an integer that indicates whether the first value is shorter than, equal to, or longer than the second value.
      * @param t1 The first Timespan to compare.
@@ -262,6 +262,11 @@ export declare class Timespan {
      * Creates a copy of this instance.
      */
     clone(): Timespan;
+    /**
+     * Converts the value of the current TimeSpan object to its equivalent string representation.
+     */
+    toString(): string;
+    private static formatDigit(d, extra?);
     private static evalMillis(value);
     private static validateRange(value, min, max, paramName?);
     private static validateInt(value, paramName?);

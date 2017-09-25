@@ -474,7 +474,8 @@ export class Timespan {
      * Returns the sign this Timespan, indicating whether the value is positive, negative or zero.
      */
     sign() {
-        return Math.sign(this.ms);
+        if (Math.abs(this.ms) == 0) return 0;
+        return this.ms > 0 ? 1 : -1;
     }
 
     /**
@@ -511,7 +512,7 @@ export class Timespan {
     lessThan(value: Timespan): boolean {
         if (value == null) throw new ArgumentNullException("value");
         return this.totalMilliseconds < value.totalMilliseconds;
-    }    
+    }
 
     /**
      * Returns true if this instance is greater than the specified Timespan object, otherwise returns false.
@@ -519,13 +520,48 @@ export class Timespan {
     greaterThan(value: Timespan): boolean {
         if (value == null) throw new ArgumentNullException("value");
         return this.totalMilliseconds > value.totalMilliseconds;
-    }        
+    }
 
     /**
      * Creates a copy of this instance.
      */
     clone() {
         return new Timespan(this.ms);
+    }
+
+    /**
+     * Converts the value of the current TimeSpan object to its equivalent string representation.
+     */
+    toString() {
+        let r: string;
+        if (this.ms < 0)
+            r = "-";
+        else r = "";
+
+        if (this.days != 0)
+            r += Math.abs(this.days) + ".";
+
+        r += (
+            Timespan.formatDigit(this.hours) +
+            ":" + Timespan.formatDigit(this.minutes) +
+            ":" + Timespan.formatDigit(this.seconds) +
+            "." + Timespan.formatDigit(this.milliseconds, true)
+        );
+
+        return r;
+    }
+
+    private static formatDigit(d: number, extra?: boolean): string {
+        d = Math.abs(d);
+        if (!extra)
+            return d > 9 ? d.toString() : "0" + d;
+
+        if (d < 10)
+            return "00" + d;
+        if (d < 100)
+            return "0" + d;
+
+        return d.toString();
     }
 
     private static evalMillis(value: number): number {

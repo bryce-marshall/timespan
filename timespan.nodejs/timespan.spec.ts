@@ -10,6 +10,29 @@ import { Timespan } from "./package-src/index";
     private totalHours: number;
     private totalDays: number;
 
+    @test("To String") ToString() {
+        expect(Timespan.create(1, 1, 1, 1, 1).toString()).to.equal("1.01:01:01.001");
+    }
+
+    @test("To String Neg") ToStringNeg() {
+        let ts = Timespan.create(1, 1, 1, 1, 1);
+        ts.negate();
+        expect(ts.toString()).to.equal("-1.01:01:01.001");
+    }
+
+    @test("To String Min") ToStringMin() {
+        expect(new Timespan().toString()).to.equal("00:00:00.000");
+    }
+
+    @test("To String Max no days") ToStringMaxNoDays() {
+        expect(Timespan.create(0, 23, 59, 59, 999).toString()).to.equal("23:59:59.999");
+    }
+
+    @test("To String Max no days Neg") ToStringMaxNoDaysNeg() {
+        let ts = Timespan.create(0, 23, 59, 59, 999);
+        ts.negate();
+        expect(ts.toString()).to.equal("-23:59:59.999");
+    }    
 
     @test("From Milliseconds") testFromMillis() {
         this.eval(this.fromMilliseconds(1500));
@@ -59,7 +82,7 @@ import { Timespan } from "./package-src/index";
         expect(cmp.totalMilliseconds).to.equal(neg.totalMilliseconds, "neg.totalMilliseconds");
         cmp.negate();
         expect(cmp.totalMilliseconds).to.equal(pos.totalMilliseconds, "pos.totalMilliseconds");
-    }    
+    }
 
     assignCompTest(initialMillis: number, expectedMillis: number, days: number, hours: number, minutes: number, seconds: number, milliseconds: number) {
         let ts = new Timespan(initialMillis);
