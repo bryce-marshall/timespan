@@ -32,7 +32,7 @@ import { Timespan } from "./package-src/index";
         let ts = Timespan.create(0, 23, 59, 59, 999);
         ts.negate();
         expect(ts.toString()).to.equal("-23:59:59.999");
-    }    
+    }
 
     @test("From Milliseconds") testFromMillis() {
         this.eval(this.fromMilliseconds(1500));
@@ -96,7 +96,37 @@ import { Timespan } from "./package-src/index";
         expect(cmp.hours).to.equal(9, "pos.hours");
         expect(cmp.minutes).to.equal(23, "pos.minutes");
         expect(cmp.seconds).to.equal(59, "pos.seconds");
-        expect(cmp.milliseconds).to.equal(874, "pos.milliseconds");        
+        expect(cmp.milliseconds).to.equal(874, "pos.milliseconds");
+    }
+
+    @test("Time Component Test (min)") timeCompTestMin() {
+        let d = new Date(2017, 1, 1, 0, 0, 0, 0);
+        let cmp = Timespan.fromTime(d);
+        expect(cmp.days).to.equal(0, "cmp.days");
+        expect(cmp.hours).to.equal(0, "cmp.hours");
+        expect(cmp.minutes).to.equal(0, "cmp.minutes");
+        expect(cmp.seconds).to.equal(0, "cmp.seconds");
+        expect(cmp.milliseconds).to.equal(0, "cmp.milliseconds");
+    }
+
+    @test("Time Component Test (max)") timeCompTestMax() {
+        let d = new Date(2017, 1, 1, 23, 59, 59, 999);
+        let cmp = Timespan.fromTime(d);
+        expect(cmp.days).to.equal(0, "cmp.days");
+        expect(cmp.hours).to.equal(23, "cmp.hours");
+        expect(cmp.minutes).to.equal(59, "cmp.minutes");
+        expect(cmp.seconds).to.equal(59, "cmp.seconds");
+        expect(cmp.milliseconds).to.equal(999, "cmp.milliseconds");
+    }
+
+    @test("Time Component Test (pre-1970)") timeCompTestPre1970() {
+        let d = new Date(1900, 1, 1, 23, 59, 59, 999);
+        let cmp = Timespan.fromTime(d);
+        expect(cmp.days).to.equal(0, "cmp.days");
+        expect(cmp.hours).to.equal(23, "cmp.hours");
+        expect(cmp.minutes).to.equal(59, "cmp.minutes");
+        expect(cmp.seconds).to.equal(59, "cmp.seconds");
+        expect(cmp.milliseconds).to.equal(999, "cmp.milliseconds");
     }    
 
     assignCompTest(initialMillis: number, expectedMillis: number, days: number, hours: number, minutes: number, seconds: number, milliseconds: number) {

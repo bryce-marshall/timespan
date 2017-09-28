@@ -29,6 +29,16 @@ export declare class Timespan {
      */
     static create(days?: number, hours?: number, minutes?: number, seconds?: number, milliseconds?: number): Timespan;
     /**
+     * Returns the time component (hours, minutes, seconds, and milliseconds) of a Date object as Timespan instance.
+     * @param date The date from which to derive the time component.
+     */
+    static fromTime(date: Date): Timespan;
+    /**
+     * Returns the time component (hours, minutes, seconds, and milliseconds) of a Date object as a total milliseconds value.
+     * @param date The date from which to derive the time component.
+     */
+    static timeComponent(date: Date): number;
+    /**
      * Returns the difference in time between two dates as a Timespan instance, by subtracting d2 from d1.
      * @param d1 The first date to compare.
      * @param d2 The second date to compare.
@@ -270,6 +280,7 @@ export declare class Timespan {
     private static evalMillis(value);
     private static validateRange(value, min, max, paramName?);
     private static validateInt(value, paramName?);
+    private static trunc(n);
 }
 ```
 

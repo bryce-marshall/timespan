@@ -43,6 +43,23 @@ export class Timespan {
     }
 
     /**
+     * Returns the time component (hours, minutes, seconds, and milliseconds) of a Date object as Timespan instance.
+     * @param date The date from which to derive the time component.
+     */
+    static fromTime(date: Date): Timespan {
+        return new Timespan(Timespan.timeComponent(date));
+    }
+
+    /**
+     * Returns the time component (hours, minutes, seconds, and milliseconds) of a Date object as a total milliseconds value.
+     * @param date The date from which to derive the time component.
+     */
+    static timeComponent(date: Date): number {
+        if (date == null) throw new ArgumentNullException("date");
+        return date.getHours() * 3600000 + date.getMinutes() * 60000 + date.getSeconds() * 1000 + date.getMilliseconds();
+    }
+
+    /**
      * Returns the difference in time between two dates as a Timespan instance, by subtracting d2 from d1.
      * @param d1 The first date to compare.
      * @param d2 The second date to compare.
@@ -154,7 +171,7 @@ export class Timespan {
      * Gets the days component of the time interval represented by the current TimeSpan instance.
      */
     get days(): number {
-        return Math.trunc(this.ms / 86400000);
+        return Timespan.trunc(this.ms / 86400000);
     }
 
     /**
@@ -170,7 +187,7 @@ export class Timespan {
      * Gets the hours component of the time interval represented by the current TimeSpan instance.
      */
     get hours(): number {
-        return Math.trunc(this.ms / 3600000) % 24;
+        return Timespan.trunc(this.ms / 3600000) % 24;
     }
 
     /**
@@ -186,7 +203,7 @@ export class Timespan {
      * Gets the minutes component of the time interval represented by the current TimeSpan instance.
      */
     get minutes(): number {
-        return Math.trunc(this.ms / 60000) % 60;
+        return Timespan.trunc(this.ms / 60000) % 60;
     }
 
     /**
@@ -202,7 +219,7 @@ export class Timespan {
      * Gets the seconds component of the time interval represented by the current TimeSpan instance.
      */
     get seconds(): number {
-        return Math.trunc(this.ms / 1000) % 60;
+        return Timespan.trunc(this.ms / 1000) % 60;
     }
 
     /**
@@ -575,6 +592,10 @@ export class Timespan {
     }
 
     private static validateInt(value: number, paramName?: string) {
-        if (typeof (value) != "number" || value != Math.trunc(value)) throw new ArgumentException(paramName ? paramName : "value", "Must be an integer.");
+        if (typeof (value) != "number" || value != Timespan.trunc(value)) throw new ArgumentException(paramName ? paramName : "value", "Must be an integer.");
+    }
+
+    private static trunc(n: number) {
+        return n >= 0 ? Math.floor(n) : Math.ceil(n);
     }
 }
