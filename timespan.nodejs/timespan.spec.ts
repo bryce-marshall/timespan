@@ -84,6 +84,21 @@ import { Timespan } from "./package-src/index";
         expect(cmp.totalMilliseconds).to.equal(pos.totalMilliseconds, "pos.totalMilliseconds");
     }
 
+    @test("test Sign") testSign() {
+        let cmp = Timespan.create(-17, -9, -23, -59, -874);
+        expect(cmp.days).to.equal(-17, "neg.days");
+        expect(cmp.hours).to.equal(-9, "neg.hours");
+        expect(cmp.minutes).to.equal(-23, "neg.minutes");
+        expect(cmp.seconds).to.equal(-59, "neg.seconds");
+        expect(cmp.milliseconds).to.equal(-874, "neg.milliseconds");
+        cmp.negate();
+        expect(cmp.days).to.equal(17, "pos.days");
+        expect(cmp.hours).to.equal(9, "pos.hours");
+        expect(cmp.minutes).to.equal(23, "pos.minutes");
+        expect(cmp.seconds).to.equal(59, "pos.seconds");
+        expect(cmp.milliseconds).to.equal(874, "pos.milliseconds");        
+    }    
+
     assignCompTest(initialMillis: number, expectedMillis: number, days: number, hours: number, minutes: number, seconds: number, milliseconds: number) {
         let ts = new Timespan(initialMillis);
         ts.days = days;

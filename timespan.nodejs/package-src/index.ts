@@ -154,7 +154,7 @@ export class Timespan {
      * Gets the days component of the time interval represented by the current TimeSpan instance.
      */
     get days(): number {
-        return Math.floor(Math.abs(this.ms) / 86400000) * this.sign();
+        return Math.trunc(this.ms / 86400000);
     }
 
     /**
@@ -170,7 +170,7 @@ export class Timespan {
      * Gets the hours component of the time interval represented by the current TimeSpan instance.
      */
     get hours(): number {
-        return (Math.floor(Math.abs(this.ms) / 3600000) % 24) * this.sign();
+        return Math.trunc(this.ms / 3600000) % 24;
     }
 
     /**
@@ -186,7 +186,7 @@ export class Timespan {
      * Gets the minutes component of the time interval represented by the current TimeSpan instance.
      */
     get minutes(): number {
-        return (Math.floor(Math.abs(this.ms) / 60000) % 60) * this.sign();
+        return Math.trunc(this.ms / 60000) % 60;
     }
 
     /**
@@ -202,7 +202,7 @@ export class Timespan {
      * Gets the seconds component of the time interval represented by the current TimeSpan instance.
      */
     get seconds(): number {
-        return (Math.floor(Math.abs(this.ms) / 1000) % 60) * this.sign();
+        return Math.trunc(this.ms / 1000) % 60;
     }
 
     /**
@@ -218,7 +218,7 @@ export class Timespan {
      * Gets the milliseconds component of the time interval represented by the current TimeSpan instance.
      */
     get milliseconds(): number {
-        return (Math.abs(this.ms) % 1000) * this.sign();
+        return this.ms % 1000;
     }
 
     /**
@@ -575,6 +575,6 @@ export class Timespan {
     }
 
     private static validateInt(value: number, paramName?: string) {
-        if (typeof (value) != "number" || value != Math.floor(value)) throw new ArgumentException(paramName ? paramName : "value", "Must be an integer.");
+        if (typeof (value) != "number" || value != Math.trunc(value)) throw new ArgumentException(paramName ? paramName : "value", "Must be an integer.");
     }
 }
