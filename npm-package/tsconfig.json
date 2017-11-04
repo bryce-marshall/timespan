@@ -11,7 +11,7 @@
         "pretty": true
     },
     "include": [
-        "./timespan.nodejs/package-src"
+        "../timespan.nodejs/package-src"
     ],
     "exclude": [
         ".vscode",
